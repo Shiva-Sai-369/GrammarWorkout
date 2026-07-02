@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-surface-container-low: #f5f2ff;
+  --color-secondary-fixed: #e5deff;
+  --color-on-error-container: #93000a;
+  --color-on-surface-variant: #51424e;
+  --color-tertiary-fixed-dim: #e9b5f0;
+  --color-primary-fixed-dim: #ffa9fa;
+  --color-surface-variant: #e3e0f2;
+  --color-on-tertiary-fixed: #30093a;
+  --color-surface-tint: #953697;
+  --color-on-background: #1a1a27;
+  --color-primary-fixed: #ffd6f8;
+  --color-tertiary-container: #714679;
+  --color-secondary: #5e53a4;
+  --color-outline-variant: #d5c1cf;
+  --color-primary: #6f0b74;
+  --color-on-secondary-fixed: #19055e;
+  --color-on-secondary-fixed-variant: #463b8b;
+  --color-tertiary-fixed: #fdd6ff;
+  --color-surface-container-high: #e9e6f8;
+  --color-error-container: #ffdad6;
+  --color-on-tertiary: #ffffff;
+  --color-secondary-fixed-dim: #c8bfff;
+  --color-inverse-surface: #2f2f3c;
+  --color-outline: #83727f;
+  --color-on-surface: #1a1a27;
+  --color-surface-container-highest: #e3e0f2;
+  --color-surface-container: #eeecfe;
+  --color-surface-bright: #fcf8ff;
+  --color-on-primary-fixed-variant: #79197d;
+  --color-inverse-primary: #ffa9fa;
+  --color-surface-container-lowest: #ffffff;
+  --color-on-primary-fixed: #37003a;
+  --color-on-primary: #ffffff;
+  --color-secondary-container: #b1a6fe;
+  --color-on-secondary: #ffffff;
+  --color-on-error: #ffffff;
+  --color-primary-container: #8b2c8e;
+  --color-background: #fcf8ff;
+  --color-surface-dim: #dad8ea;
+  --color-on-primary-container: #ffb2f9;
+  --color-inverse-on-surface: #f2efff;
+  --color-on-tertiary-fixed-variant: #603769;
+  --color-tertiary: #572f60;
+  --color-on-tertiary-container: #eebaf5;
+  --color-error: #ba1a1a;
+  --color-surface: #fcf8ff;
+  --color-on-secondary-container: #423787;
+  --color-brand-deep-indigo: #4A3F8F;
+  --color-brand-magenta: #8B2C8E;
+  --color-brand-lilac: #D9A6E0;
+  --color-brand-navy: #2B2B38;
+  --color-brand-lavender: #F4F0FB;
+
+  --font-sans: "Montserrat", sans-serif;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(270deg, #4A3F8F, #5e53a4, #4A3F8F);
+  background-size: 200% 200%;
+  animation: shimmer 8s ease infinite;
+}
+

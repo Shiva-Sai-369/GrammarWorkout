@@ -1,0 +1,8 @@
+{
+  "name": "LinguistPro",
+  "description": "Personalized neuroscience-backed language learning platform built for every kind of learner.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
