@@ -4,21 +4,16 @@ import {
   School, 
   Compass, 
   BookOpen, 
-  CheckCircle, 
   Mic, 
   ChevronDown, 
   Facebook, 
   Globe, 
   Award, 
   Sparkles, 
-  Brain, 
   GraduationCap, 
   Menu, 
   X,
-  Play,
-  Languages,
-  BookMarked,
-  Volume2
+  Languages
 } from 'lucide-react';
 
 import { FAQItem } from './types';
@@ -73,12 +68,11 @@ export default function App() {
           
           {/* Logo */}
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-brand-magenta/10 rounded-xl flex items-center justify-center text-brand-magenta border border-brand-magenta/15">
-              <School className="w-5 h-5" />
-            </div>
-            <span className="text-2xl font-black text-brand-navy tracking-tight">
-              Linguist<span className="text-brand-magenta">Pro</span>
-            </span>
+            <img 
+              src="/images/gwwww-2-1536x480.png" 
+              alt="GrammarWorkout Logo" 
+              className="h-18 w-auto object-contain"
+            />
           </div>
 
           {/* Desktop Nav Links */}
@@ -131,74 +125,52 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* HERO SECTION - Centered typography overlay on top of the happy diverse group selfie image */}
-      <section className="relative overflow-hidden min-h-[700px] md:min-h-[820px] flex items-start justify-center bg-brand-navy text-white pt-20 sm:pt-28 md:pt-32 pb-40 px-6">
+      {/* HERO SECTION - Centered typography overlay on top of the diverse group image */}
+      <section className="relative overflow-hidden min-h-[700px] md:min-h-[820px] flex items-start justify-center bg-white text-brand-navy pt-20 sm:pt-28 md:pt-32 pb-40 px-6">
         
-        {/* Background Image: Happy diverse group selfie of learners */}
+        {/* Background Image: Happy diverse group of learners */}
         <div className="absolute inset-0 z-0">
           <img 
-            className="w-full h-full object-cover object-center opacity-65 scale-105 transition-all duration-700 hover:scale-100"
-            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1920&q=80"
+            className="w-full h-full object-cover object-center"
+            src="/images/Gemini_Generated_Image_eurrjaeurrjaeurr.png"
             alt="Diverse group of friendly, smiling language learners representing every kind of student"
-            referrerPolicy="no-referrer"
           />
-          {/* Custom overlays to keep the top dark for perfect text readability while letting the bottom selfie faces shine through vividly */}
-          <div className="absolute inset-0 bg-gradient-to-b from-brand-navy/90 via-brand-navy/50 to-transparent" />
-          <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-brand-navy via-brand-navy/30 to-transparent" />
+          {/* Light overlay to ensure text readability */}
+          <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/50 to-white/70" />
+          {/* Bottom fade element for smooth transition */}
+          <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white via-white/90 to-transparent" />
         </div>
 
-        {/* Hero content - Centered on top of the image, shifted up */}
-        <div className="relative z-10 max-w-4xl mx-auto text-center space-y-8 mt-4">
+        {/* Hero content - Centered on top of the image */}
+        <div className="relative z-10 max-w-3xl mx-auto text-center space-y-6 -mt-20">
           
-          {/* Tag badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/10 backdrop-blur-md rounded-full text-xs font-semibold tracking-wide border border-white/20 text-brand-lilac animate-float">
-            <Brain className="w-3.5 h-3.5" /> Cognitive Language Neuroscience
-          </div>
-
           <div className="space-y-4">
-            <h1 className="text-4xl sm:text-6xl font-black leading-tight tracking-tight max-w-3xl mx-auto text-white drop-shadow-md">
-              Built for Every <br className="hidden sm:inline" /> Kind of <span className="text-brand-lilac underline decoration-brand-magenta decoration-4 underline-offset-8">Learner.</span>
+            <h1 className="text-3xl sm:text-5xl md:text-6xl font-black leading-tight tracking-tight max-w-3xl mx-auto text-brand-navy drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)]">
+              Find Your Tribe, <br className="hidden sm:inline" />
+              Build Your <span className="text-brand-magenta">Network.</span>
             </h1>
-            <p className="text-base sm:text-lg text-white/90 max-w-2xl mx-auto leading-relaxed font-medium drop-shadow-sm">
-              Whether you're a visual storyteller, a rhythmic processor, or a structural thinker, LinguistPro adapts its curriculum to your unique cognitive signature. Empowering language learners through personalized neuroscience.
+            <p className="text-sm sm:text-base md:text-lg text-brand-navy/90 max-w-xl mx-auto leading-relaxed font-medium drop-shadow-[0_1px_4px_rgba(0,0,0,0.25)]">
+              Connect with like-minded students for fun, friendships, and future opportunities.
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 items-center justify-center pt-2">
             <button 
               onClick={() => setIsAssessmentOpen(true)}
-              className="w-full sm:w-auto bg-brand-lilac text-brand-deep-indigo px-8 py-4 rounded-xl text-sm font-bold shadow-lg hover:scale-105 transition-transform cursor-pointer"
+              className="w-full sm:w-auto bg-brand-navy text-white px-7 py-3 rounded-xl text-sm font-bold shadow-lg hover:scale-105 transition-transform cursor-pointer flex items-center justify-center gap-2"
             >
-              Claim Your Study Plan
+              Join for Free <Sparkles className="w-4 h-4" />
             </button>
             <button 
               onClick={() => setIsLessonOpen(true)}
-              className="w-full sm:w-auto border-2 border-white/80 hover:border-white text-white bg-white/5 hover:bg-white/15 px-8 py-4 rounded-xl text-sm font-bold transition-all cursor-pointer backdrop-blur-sm"
+              className="w-full sm:w-auto border-2 border-brand-navy/20 hover:border-brand-navy/40 text-brand-navy bg-white/80 hover:bg-white px-7 py-3 rounded-xl text-sm font-bold transition-all cursor-pointer backdrop-blur-sm flex items-center justify-center gap-2"
             >
-              View Sample Lesson
+              <Globe className="w-4 h-4" /> Explore Communities
             </button>
           </div>
         </div>
 
-        {/* Phone floating preview mockup aligned neatly at bottom right corner (decoratively) */}
-        <div className="absolute bottom-4 right-4 hidden xl:block w-72 animate-float pointer-events-none opacity-80">
-          <div className="bg-slate-900 p-2.5 rounded-3xl shadow-2xl border border-white/10 bg-gradient-to-tr from-brand-deep-indigo/80 to-slate-950/90 backdrop-blur-lg text-xs space-y-3">
-            <div className="flex justify-between items-center text-white/40 font-mono text-[10px]">
-              <span>LinguistPro OS</span>
-              <span>100% Sync</span>
-            </div>
-            <div className="bg-white/5 p-3 rounded-2xl border border-white/5 space-y-2">
-              <div className="flex justify-between items-center">
-                <span className="font-bold text-brand-lilac">Journey Today</span>
-                <span className="text-emerald-400 font-bold">78% Match</span>
-              </div>
-              <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
-                <div className="bg-brand-magenta h-full w-[78%]" />
-              </div>
-              <span className="text-[10px] text-white/60 block leading-snug">Targeting auditory pitch benchmarks</span>
-            </div>
-          </div>
-        </div>
+        {/* Remove the phone mockup for cleaner design */}
       </section>
 
       {/* WHY DIFFERENT (A Smarter Approach to Mastery) */}
@@ -283,7 +255,7 @@ export default function App() {
             <span className="text-xs font-black uppercase tracking-widest text-brand-magenta">Cognitive Sequence</span>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-brand-navy tracking-tight">The Learning Lifecycle</h2>
             <p className="text-sm text-brand-navy/60 max-w-xl mx-auto">
-              Traditional apps force you into a one-size-fits-all mold. LinguistPro evolves as you do, ensuring fast natural fluency.
+              Traditional apps force you into a one-size-fits-all mold. GrammarWorkout evolves as you do, ensuring fast natural fluency.
             </p>
           </div>
 
@@ -303,7 +275,7 @@ export default function App() {
           
           <div className="space-y-4">
             <span className="inline-block px-4 py-1.5 bg-brand-magenta/30 text-brand-lilac rounded-full text-xs font-semibold uppercase tracking-widest border border-brand-magenta/50">
-              LinguistPro Voice Engine
+              GrammarWorkout Voice Engine
             </span>
             <h2 className="text-3xl sm:text-5xl font-extrabold text-white leading-tight tracking-tight">
               Master the Nuance of <span className="text-brand-lilac italic">Native</span> Speech.
@@ -384,7 +356,7 @@ export default function App() {
                 Ready to redefine your linguistic boundaries?
               </h2>
               <p className="text-sm sm:text-base text-brand-lilac font-medium max-w-xl mx-auto opacity-90">
-                Join over 2 million language learners worldwide who have found their voice with LinguistPro.
+                Join over 2 million language learners worldwide who have found their voice with GrammarWorkout.
               </p>
             </div>
 
@@ -416,7 +388,7 @@ export default function App() {
                 <School className="w-4 h-4" />
               </div>
               <span className="text-xl font-black text-brand-navy tracking-tight">
-                Linguist<span className="text-brand-magenta">Pro</span>
+                Grammar<span className="text-brand-magenta">Workout</span>
               </span>
             </div>
             <p className="text-xs text-outline leading-relaxed font-medium">
@@ -461,7 +433,7 @@ export default function App() {
         </div>
 
         <div className="max-w-7xl mx-auto px-6 mt-12 pt-6 border-t border-outline-variant flex flex-col sm:flex-row justify-between text-xs text-outline font-medium gap-4">
-          <p>© 2026 LinguistPro. All rights reserved.</p>
+          <p>© 2026 GrammarWorkout. All rights reserved.</p>
           <p>Designed with ❤️ for the curious.</p>
         </div>
       </footer>
@@ -510,7 +482,7 @@ export default function App() {
             >
               <div className="flex justify-between items-center">
                 <h4 className="font-bold text-lg text-brand-navy flex items-center gap-1.5">
-                  <Languages className="w-5 h-5 text-brand-magenta" /> LinguistPro Curriculums
+                  <Languages className="w-5 h-5 text-brand-magenta" /> GrammarWorkout Curriculums
                 </h4>
                 <button onClick={() => setShowCurriculumModal(false)} className="p-1 hover:bg-slate-100 rounded-full transition-colors">
                   <X className="w-5 h-5" />
