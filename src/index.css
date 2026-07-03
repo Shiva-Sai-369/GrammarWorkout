@@ -54,6 +54,12 @@
   --color-brand-lilac: #D9A6E0;
   --color-brand-navy: #2B2B38;
   --color-brand-lavender: #F4F0FB;
+  
+  /* Custom GrammarWorkout Colors */
+  --color-gw-primary: #82007C;
+  --color-gw-light: #DCB8DA;
+  --color-gw-hover: #6B0066;
+  --color-gw-bg: #F5EBF4;
 
   --font-sans: "Montserrat", sans-serif;
 }
