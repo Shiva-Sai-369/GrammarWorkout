@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Why Schools Choose GrammarWorkout</title>
+  <style>
+    /* ===================================================================
+       WHY SCHOOLS CHOOSE US SECTION - STANDALONE VERSION
+       Two-column comparison layout with animations
+       =================================================================== */
+
+    /* Base Reset & Setup */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ===================================================================
+       KEYFRAME ANIMATIONS
+       =================================================================== */
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInScale {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* ===================================================================
+       SECTION BASE
+       =================================================================== */
+    
+    .why-schools-section {
+      padding: 3rem 1.5rem;
+      background-color: white;
+    }
+
+    .why-schools-container {
+      max-width: 80rem;
+      margin: 0 auto;
+    }
+
+    /* ===================================================================
+       HEADER
+       =================================================================== */
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: 2rem;
+      opacity: 1;
+    }
+
+    .section-header.will-animate {
+      opacity: 0;
+    }
+
+    .section-header.animate-in {
+      animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .section-title {
+      font-size: clamp(1.25rem, 5vw, 1.5rem);
+      font-weight: 900;
+      color: #1e293b;
+      margin-bottom: 1rem;
+    }
+
+    .section-description {
+      font-size: clamp(0.875rem, 3vw, 1.125rem);
+      color: #475569;
+      max-width: 48rem;
+      margin: 0 auto;
+      font-weight: 500;
+      padding: 0 0.5rem;
+    }
+
+    /* ===================================================================
+       COMPARISON GRID
+       =================================================================== */
+    
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Left Column (Other Platforms) */
+    .comparison-column-left {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .comparison-column-left .comparison-card {
+      opacity: 1;
+    }
+
+    .comparison-column-left.will-animate .comparison-card {
+      opacity: 0;
+    }
+
+    .comparison-column-left .comparison-card:nth-child(1).animate-in {
+      animation: slideInLeft 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation-delay: 0ms;
+    }
+
+    .comparison-column-left .comparison-card:nth-child(2).animate-in {
+      animation: slideInLeft 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation-delay: 100ms;
+    }
+
+    .comparison-column-left .comparison-card:nth-child(3).animate-in {
+      animation: slideInLeft 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation-delay: 200ms;
+    }
+
+    .comparison-column-left .comparison-card:nth-child(4).animate-in {
+      animation: slideInLeft 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation-delay: 300ms;
+    }
+
+    /* Right Column (GrammarWorkout) */
+    .comparison-column-right {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .comparison-column-right .comparison-card {
+      opacity: 1;
+    }
+
+    .comparison-column-right.will-animate .comparison-card {
+      opacity: 0;
+    }
+
+    .comparison-column-right .comparison-card:nth-child(1).animate-in {
+      animation: slideInRight 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation-delay: 0ms;
+    }
+
+    .comparison-column-right .comparison-card:nth-child(2).animate-in {
+      animation: slideInRight 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation-delay: 100ms;
+    }
+
+    .comparison-column-right .comparison-card:nth-child(3).animate-in {
+      animation: slideInRight 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation-delay: 200ms;
+    }
+
+    .comparison-column-right .comparison-card:nth-child(4).animate-in {
+      animation: slideInRight 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation-delay: 300ms;
+    }
+
+    /* ===================================================================
+       COMPARISON CARDS
+       =================================================================== */
+    
+    /* Base card styles */
+    .comparison-card {
+      padding: 1rem;
+      border-radius: 0.5rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    /* Left column cards (Other Platforms) */
+    .comparison-column-left .comparison-card {
+      background-color: #f8fafc;
+      border: 1px solid #e2e8f0;
+    }
+
+    .comparison-column-left .comparison-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Right column cards (GrammarWorkout) */
+    .comparison-column-right .comparison-card {
+      background-color: #F5EBF4;
+      border: 2px solid #84007B;
+    }
+
+    .comparison-column-right .comparison-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(132, 0, 123, 0.15);
+    }
+
+    /* Card content */
+    .card-title {
+      font-weight: 900;
+      margin-bottom: 0.5rem;
+      font-size: clamp(0.875rem, 3vw, 1rem);
+    }
+
+    .comparison-column-left .card-title {
+      color: #334155;
+    }
+
+    .comparison-column-right .card-title {
+      color: #84007B;
+    }
+
+    .card-description {
+      font-size: clamp(0.8125rem, 2.5vw, 0.875rem);
+      line-height: 1.5;
+    }
+
+    .comparison-column-left .card-description {
+      color: #475569;
+    }
+
+    .comparison-column-right .card-description {
+      color: #334155;
+      font-weight: 500;
+    }
+
+    /* ===================================================================
+       CTA BUTTON
+       =================================================================== */
+    
+    .section-cta {
+      text-align: center;
+      margin-top: 1.5rem;
+      opacity: 1;
+    }
+
+    .section-cta.will-animate {
+      opacity: 0;
+    }
+
+    .section-cta.animate-in {
+      animation: fadeInScale 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation-delay: 400ms;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #84007B;
+      color: white;
+      padding: 0.875rem 1.75rem;
+      border-radius: 0.5rem;
+      font-weight: 900;
+      font-size: clamp(0.875rem, 3vw, 1rem);
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .cta-button:hover {
+      background-color: #6B0066;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(132, 0, 123, 0.25);
+    }
+
+    .cta-button:active {
+      transform: translateY(0);
+    }
+
+    /* ===================================================================
+       RESPONSIVE DESIGN
+       =================================================================== */
+    
+    /* Extra small devices (very narrow phones) */
+    @media (max-width: 375px) {
+      .why-schools-section {
+        padding: 2rem 1rem;
+      }
+
+      .comparison-card {
+        padding: 0.875rem;
+      }
+
+      .section-header {
+        margin-bottom: 1.5rem;
+      }
+    }
+
+    /* Tablet and up - side by side layout */
+    @media (min-width: 768px) {
+      .why-schools-section {
+        padding: 4rem 1.5rem;
+      }
+
+      .section-title {
+        font-size: 1.875rem;
+      }
+
+      .section-description {
+        font-size: 1.125rem;
+        padding: 0;
+      }
+
+      .comparison-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
+
+      .card-title {
+        font-size: 1rem;
+      }
+
+      .card-description {
+        font-size: 0.875rem;
+      }
+
+      .cta-button {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .section-title {
+        font-size: 2.25rem;
+      }
+    }
+
+    /* ===================================================================
+       ACCESSIBILITY - REDUCED MOTION
+       =================================================================== */
+    
+    @media (prefers-reduced-motion: reduce) {
+      .section-header,
+      .comparison-card,
+      .section-cta {
+        opacity: 1 !important;
+        animation: none !important;
+        transform: none !important;
+      }
+
+      .comparison-card:hover,
+      .cta-button:hover {
+        transform: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===================================================================
+     WHY SCHOOLS CHOOSE US SECTION
+     - Paste this entire section into WordPress Custom HTML or Elementor
+     =================================================================== -->
+
+<section id="why-schools" class="why-schools-section">
+  <div class="why-schools-container">
+    
+    <!-- Header -->
+    <div class="section-header">
+      <h2 class="section-title">
+        Why Schools Choose GrammarWorkout
+      </h2>
+      <p class="section-description">
+        Other platforms are built to keep students logged in. GrammarWorkout is built to move their grammar scores.
+      </p>
+    </div>
+
+    <!-- Two-lane comparison layout -->
+    <div class="comparison-grid">
+      
+      <!-- Left lane: Other platforms (implied) -->
+      <div class="comparison-column-left">
+        
+        <div class="comparison-card">
+          <h3 class="card-title">Built around engagement metrics</h3>
+          <p class="card-description">
+            Daily streaks, reward points, and gamification features that keep students opening the app
+          </p>
+        </div>
+        
+        <div class="comparison-card">
+          <h3 class="card-title">Proprietary level systems</h3>
+          <p class="card-description">
+            Custom progress tracking that doesn't map to standards your administrators recognize
+          </p>
+        </div>
+        
+        <div class="comparison-card">
+          <h3 class="card-title">Consumer-focused design</h3>
+          <p class="card-description">
+            Built for individual learners, not classroom reporting needs
+          </p>
+        </div>
+        
+        <div class="comparison-card">
+          <h3 class="card-title">Trial-and-error approach</h3>
+          <p class="card-description">
+            Exercises optimized for retention metrics rather than acquisition research
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Right lane: GrammarWorkout -->
+      <div class="comparison-column-right">
+        
+        <div class="comparison-card">
+          <h3 class="card-title">Grammar comes first.</h3>
+          <p class="card-description">
+            Lessons are built around understanding sentence structure, not around daily streak reminders.
+          </p>
+        </div>
+        
+        <div class="comparison-card">
+          <h3 class="card-title">CEFR alignment your reports can use.</h3>
+          <p class="card-description">
+            A1–B2 levels map to a standard your administrators already recognize.
+          </p>
+        </div>
+        
+        <div class="comparison-card">
+          <h3 class="card-title">Built for more than one user.</h3>
+          <p class="card-description">
+            Teachers and administrators see the same progress data students do — nothing gets lost between class and report card.
+          </p>
+        </div>
+        
+        <div class="comparison-card">
+          <h3 class="card-title">Grounded in how grammar is actually learned.</h3>
+          <p class="card-description">
+            The lesson order follows language-acquisition research, not what tests well for app engagement.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- CTA Button -->
+    <div class="section-cta">
+      <a href="#consultation" class="cta-button">
+        Talk to Our Team
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===================================================================
+     VANILLA JAVASCRIPT - Scroll-triggered animations
+     =================================================================== -->
+
+<script>
+(function() {
+  'use strict';
+
+  // Check for reduced motion preference
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Initialize on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+  function init() {
+    if (prefersReducedMotion) {
+      // Show everything immediately without animation
+      return;
+    }
+
+    setupScrollAnimations();
+  }
+
+  /**
+   * Setup scroll-triggered animations using Intersection Observer
+   */
+  function setupScrollAnimations() {
+    const sectionHeader = document.querySelector('.section-header');
+    const leftColumn = document.querySelector('.comparison-column-left');
+    const rightColumn = document.querySelector('.comparison-column-right');
+    const sectionCta = document.querySelector('.section-cta');
+
+    // Add will-animate class to hide elements before animation
+    if (sectionHeader) sectionHeader.classList.add('will-animate');
+    if (leftColumn) leftColumn.classList.add('will-animate');
+    if (rightColumn) rightColumn.classList.add('will-animate');
+    if (sectionCta) sectionCta.classList.add('will-animate');
+
+    // Create observer for the section header
+    const headerObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in');
+            headerObserver.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.2,
+        rootMargin: '0px 0px -10% 0px'
+      }
+    );
+
+    // Create observer for the comparison cards
+    const cardsObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // Animate all cards in the column
+            const cards = entry.target.querySelectorAll('.comparison-card');
+            cards.forEach(card => {
+              card.classList.add('animate-in');
+            });
+            cardsObserver.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.15,
+        rootMargin: '0px 0px -10% 0px'
+      }
+    );
+
+    // Create observer for the CTA button
+    const ctaObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in');
+            ctaObserver.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.2,
+        rootMargin: '0px 0px -10% 0px'
+      }
+    );
+
+    // Observe elements
+    if (sectionHeader) headerObserver.observe(sectionHeader);
+    if (leftColumn) cardsObserver.observe(leftColumn);
+    if (rightColumn) cardsObserver.observe(rightColumn);
+    if (sectionCta) ctaObserver.observe(sectionCta);
+  }
+
+})();
+</script>
+
+</body>
+</html>

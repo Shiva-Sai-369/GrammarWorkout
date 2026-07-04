@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GrammarWorkout Hero Section</title>
+  <style>
+    /* ===================================================================
+       HERO SECTION - STANDALONE VERSION (No Hover Animations)
+       Load sequence and parallax scrolling only
+       =================================================================== */
+
+    /* Base Reset & Setup */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ===================================================================
+       KEYFRAME ANIMATIONS
+       =================================================================== */
+    
+    @keyframes fadeSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeScaleIn {
+      from {
+        opacity: 0;
+        transform: scale(1.03);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes ambientFloat {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-4px);
+      }
+    }
+
+    /* ===================================================================
+       HERO SECTION BASE
+       =================================================================== */
+    
+    .hero-enhanced {
+      position: relative;
+      overflow: hidden;
+      min-height: 700px;
+      display: flex;
+      align-items: start;
+      justify-content: center;
+      background-color: white;
+      color: #1e293b;
+      padding-top: 5rem;
+      padding-bottom: 10rem;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+
+    /* ===================================================================
+       BACKGROUND ILLUSTRATION
+       =================================================================== */
+    
+    .hero-illustration-container {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      backface-visibility: hidden;
+      perspective: 1000px;
+    }
+
+    .hero-illustration-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    /* Light overlay for text readability - always visible */
+    .hero-overlay-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, 
+        rgba(255, 255, 255, 0.8) 0%, 
+        rgba(255, 255, 255, 0.5) 50%, 
+        rgba(255, 255, 255, 0.7) 100%
+      );
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Edge fade treatment */
+    .hero-illustration-container::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      background: linear-gradient(
+        to right,
+        white 0%,
+        transparent 8%,
+        transparent 92%,
+        white 100%
+      );
+    }
+
+    /* Bottom fade element */
+    .hero-illustration-fade-bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 128px;
+      background: linear-gradient(
+        to top,
+        white,
+        rgba(255, 255, 255, 0.9) 50%,
+        transparent
+      );
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    /* ===================================================================
+       HERO CONTENT
+       =================================================================== */
+    
+    .hero-parallax-layer {
+      position: relative;
+      z-index: 10;
+      max-width: 48rem;
+      margin: 0 auto;
+      text-align: center;
+      margin-top: -5rem;
+      will-change: transform;
+      transition: transform 0.1s ease-out;
+      transform: translateZ(0);
+    }
+
+    .hero-content-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .hero-text-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    /* Headline */
+    .hero-headline-text {
+      font-size: 1.875rem;
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.025em;
+      max-width: 48rem;
+      margin: 0 auto;
+      color: #1e293b;
+      filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+      opacity: 1;
+    }
+
+    .hero-headline-text .text-highlight {
+      color: #84007B;
+    }
+
+    /* Subheadline */
+    .hero-subheadline-text {
+      font-size: 0.875rem;
+      color: #334155;
+      max-width: 42rem;
+      margin: 0 auto;
+      line-height: 1.625;
+      font-weight: 500;
+      filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.25));
+      opacity: 1;
+    }
+
+    /* CEFR Badge - No animation */
+    .hero-cefr-badge {
+      position: relative;
+      display: inline-block;
+      font-weight: 900;
+      color: #84007B;
+    }
+
+    /* CTA Buttons */
+    .hero-cta-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+      justify-content: center;
+      padding-top: 0.5rem;
+      opacity: 1;
+    }
+
+    .hero-btn-primary {
+      width: 100%;
+      background-color: #84007B;
+      color: white;
+      padding: 0.75rem 1.75rem;
+      border-radius: 0.75rem;
+      font-size: 0.875rem;
+      font-weight: 900;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      border: none;
+    }
+
+    /* ===================================================================
+       LOAD SEQUENCE ANIMATIONS
+       =================================================================== */
+    
+    /* Hide before animation (only when JS adds this class) */
+    .hero-enhanced.will-animate .hero-headline-text,
+    .hero-enhanced.will-animate .hero-subheadline-text,
+    .hero-enhanced.will-animate .hero-cta-buttons,
+    .hero-enhanced.will-animate .hero-illustration-container {
+      opacity: 0;
+    }
+
+    /* Animated State */
+    .hero-headline-text.animate-in {
+      animation: fadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation-delay: 0ms;
+    }
+
+    .hero-subheadline-text.animate-in {
+      animation: fadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation-delay: 150ms;
+    }
+
+    .hero-cta-buttons.animate-in {
+      animation: fadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation-delay: 300ms;
+    }
+
+    .hero-illustration-container.animate-in {
+      animation: fadeScaleIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation-delay: 450ms;
+    }
+
+    /* Ambient Float (starts after load completes) */
+    .hero-illustration-container.float-active {
+      animation: fadeScaleIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+                 ambientFloat 7s ease-in-out infinite 1.5s;
+    }
+
+    /* ===================================================================
+       RESPONSIVE DESIGN
+       =================================================================== */
+    
+    @media (min-width: 640px) {
+      .hero-enhanced {
+        padding-top: 7rem;
+      }
+
+      .hero-headline-text {
+        font-size: 3rem;
+      }
+
+      .hero-subheadline-text {
+        font-size: 1rem;
+      }
+
+      .hero-cta-buttons {
+        flex-direction: row;
+      }
+
+      .hero-btn-primary {
+        width: auto;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .hero-enhanced {
+        min-height: 820px;
+        padding-top: 8rem;
+      }
+
+      .hero-headline-text {
+        font-size: 3.75rem;
+      }
+
+      .hero-subheadline-text {
+        font-size: 1.125rem;
+      }
+
+      .hero-illustration-container::before {
+        background: linear-gradient(
+          to right,
+          white 0%,
+          transparent 8%,
+          transparent 92%,
+          white 100%
+        );
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-illustration-container::before {
+        background: linear-gradient(
+          to right,
+          white 0%,
+          transparent 5%,
+          transparent 95%,
+          white 100%
+        );
+      }
+    }
+
+    /* ===================================================================
+       ACCESSIBILITY - REDUCED MOTION
+       =================================================================== */
+    
+    @media (prefers-reduced-motion: reduce) {
+      .hero-headline-text,
+      .hero-subheadline-text,
+      .hero-cta-buttons,
+      .hero-illustration-container {
+        opacity: 1 !important;
+        animation: none !important;
+        transform: none !important;
+      }
+
+      .hero-parallax-layer {
+        transform: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===================================================================
+     HERO SECTION
+     - Paste this entire section into WordPress Custom HTML or Elementor
+     =================================================================== -->
+
+<section class="hero-enhanced">
+  
+  <!-- Background Image: Happy diverse group of learners -->
+  <div class="hero-illustration-container">
+    <img 
+      src="/images/Gemini_Generated_Image_eurrjaeurrjaeurr.png"
+      alt="Diverse group of friendly, smiling language learners representing every kind of student"
+    />
+    <!-- Light overlay to ensure text readability -->
+    <div class="hero-overlay-gradient"></div>
+    <!-- Bottom fade element for smooth transition -->
+    <div class="hero-illustration-fade-bottom"></div>
+  </div>
+
+  <!-- Hero content - Centered on top of the image -->
+  <div class="hero-parallax-layer">
+    <div class="hero-content-wrapper">
+      
+      <div class="hero-text-wrapper">
+        <h1 class="hero-headline-text">
+          Turn Grammar Practice Into Real <span class="text-highlight">Classroom Results</span>
+        </h1>
+        <p class="hero-subheadline-text">
+          <span class="hero-cefr-badge">CEFR</span>-aligned French and Spanish grammar training, built for schools and language programs
+        </p>
+      </div>
+
+      <div class="hero-cta-buttons">
+        <a 
+          href="#consultation"
+          class="hero-btn-primary"
+        >
+          Request a Quote
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+<!-- ===================================================================
+     VANILLA JAVASCRIPT - All animations (no hover effects)
+     =================================================================== -->
+
+<script>
+(function() {
+  'use strict';
+
+  // Check for reduced motion preference
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Selectors
+  const SELECTORS = {
+    hero: '.hero-enhanced',
+    headline: '.hero-headline-text',
+    subheadline: '.hero-subheadline-text',
+    ctaButtons: '.hero-cta-buttons',
+    illustration: '.hero-illustration-container',
+    parallaxContent: '.hero-parallax-layer',
+  };
+
+  // Parallax configuration
+  const PARALLAX_CONFIG = {
+    illustrationFactor: 0.3,
+    maxOffset: 30,
+  };
+
+  // Initialize on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+  function init() {
+    if (prefersReducedMotion) {
+      showAllElements();
+      return;
+    }
+
+    setupLoadSequence();
+    setupParallax();
+  }
+
+  /**
+   * Show all elements immediately (reduced motion fallback)
+   */
+  function showAllElements() {
+    const hero = document.querySelector(SELECTORS.hero);
+    if (hero) {
+      hero.classList.remove('will-animate');
+    }
+    
+    Object.values(SELECTORS).forEach(selector => {
+      const elements = document.querySelectorAll(selector);
+      elements.forEach(el => {
+        if (el) {
+          el.style.opacity = '1';
+          el.classList.remove('animate-in', 'float-active');
+        }
+      });
+    });
+  }
+
+  /**
+   * Setup load sequence animation
+   */
+  function setupLoadSequence() {
+    const hero = document.querySelector(SELECTORS.hero);
+    if (!hero) return;
+
+    // Add will-animate class to hide elements before animation starts
+    hero.classList.add('will-animate');
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            triggerLoadSequence();
+            observer.disconnect();
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -10% 0px',
+      }
+    );
+
+    observer.observe(hero);
+  }
+
+  /**
+   * Trigger the staggered load animation sequence
+   */
+  function triggerLoadSequence() {
+    const headline = document.querySelector(SELECTORS.headline);
+    const subheadline = document.querySelector(SELECTORS.subheadline);
+    const ctaButtons = document.querySelector(SELECTORS.ctaButtons);
+    const illustration = document.querySelector(SELECTORS.illustration);
+
+    if (headline) headline.classList.add('animate-in');
+    if (subheadline) subheadline.classList.add('animate-in');
+    if (ctaButtons) ctaButtons.classList.add('animate-in');
+    
+    if (illustration) {
+      illustration.classList.add('animate-in');
+      
+      // Add float animation after load completes
+      setTimeout(() => {
+        illustration.classList.add('float-active');
+      }, 1500);
+    }
+  }
+
+  /**
+   * Setup parallax scrolling effect
+   */
+  function setupParallax() {
+    const hero = document.querySelector(SELECTORS.hero);
+    const illustration = document.querySelector(SELECTORS.illustration);
+    
+    if (!hero || !illustration) return;
+
+    let ticking = false;
+    let heroTop = 0;
+    let heroHeight = 0;
+
+    function updateHeroBounds() {
+      const rect = hero.getBoundingClientRect();
+      heroTop = rect.top + window.pageYOffset;
+      heroHeight = rect.height;
+    }
+
+    updateHeroBounds();
+
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(updateHeroBounds, 150);
+    });
+
+    function updateParallax() {
+      const scrollY = window.pageYOffset;
+      const heroInView = scrollY < (heroTop + heroHeight);
+
+      if (!heroInView) {
+        ticking = false;
+        return;
+      }
+
+      const scrollProgress = Math.max(0, Math.min(1, scrollY / heroHeight));
+      const illustrationOffset = -(scrollProgress * PARALLAX_CONFIG.maxOffset * PARALLAX_CONFIG.illustrationFactor);
+
+      if (illustration) {
+        illustration.style.transform = `translateY(${illustrationOffset}px)`;
+      }
+
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateParallax);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    updateParallax();
+  }
+
+})();
+</script>
+
+</body>
+</html>

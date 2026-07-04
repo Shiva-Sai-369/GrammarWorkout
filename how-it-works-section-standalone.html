@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How It Works - GrammarWorkout</title>
+  <style>
+    /* ===================================================================
+       HOW IT WORKS SECTION - STANDALONE VERSION
+       Scroll-triggered timeline with progress animation
+       =================================================================== */
+
+    /* Base Reset & Setup */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ===================================================================
+       KEYFRAME ANIMATIONS
+       =================================================================== */
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes stepComplete {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+
+
+    /* ===================================================================
+       SECTION BASE
+       =================================================================== */
+    
+    .how-it-works-section {
+      padding: 4rem 1.5rem;
+      background-color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Dot grid background pattern */
+    .dot-grid-pattern {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(130, 0, 124, 0.05) 1px, transparent 1px);
+      background-size: 20px 20px;
+      background-position: 0 0, 10px 10px;
+      pointer-events: none;
+    }
+
+    .how-it-works-container {
+      max-width: 80rem;
+      margin: 0 auto;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* ===================================================================
+       SECTION HEADER
+       =================================================================== */
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-title {
+      font-size: 1.875rem;
+      font-weight: 900;
+      color: #1e293b;
+      margin-bottom: 1rem;
+    }
+
+    /* ===================================================================
+       DESKTOP TIMELINE (Horizontal)
+       =================================================================== */
+    
+    .timeline-desktop {
+      display: none;
+      position: relative;
+    }
+
+    .timeline-steps-container {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    /* Progress line background */
+    .progress-line-bg {
+      position: absolute;
+      top: 2.5rem;
+      left: 8%;
+      right: 8%;
+      height: 2px;
+      background-color: #e2e8f0;
+    }
+
+    /* Animated progress line fill */
+    .progress-line-fill {
+      position: absolute;
+      top: 2.5rem;
+      left: 8%;
+      height: 2px;
+      background-color: #84007B;
+      width: 0%;
+      transition: width 0.3s ease-out;
+      will-change: width;
+    }
+
+    /* Individual step */
+    .timeline-step {
+      flex: 1;
+      text-align: center;
+      position: relative;
+    }
+
+    .step-indicator-wrapper {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 1.5rem;
+    }
+
+    .step-indicator {
+      width: 5rem;
+      height: 5rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      transition: all 0.5s ease-out;
+      position: relative;
+      background-color: white;
+      border: 4px solid #cbd5e1;
+    }
+
+    .step-indicator.completed {
+      background-color: #84007B;
+      border-color: #84007B;
+      animation: stepComplete 0.4s ease-out;
+    }
+
+    .step-number {
+      font-size: 1.875rem;
+      font-weight: 900;
+      color: #94a3b8;
+    }
+
+    .step-indicator.completed .step-number {
+      display: none;
+    }
+
+    /* Check icon (SVG) */
+    .check-icon {
+      display: none;
+      width: 2.5rem;
+      height: 2.5rem;
+      color: white;
+    }
+
+    .step-indicator.completed .check-icon {
+      display: block;
+    }
+
+    /* Done label - REMOVED */
+
+    .step-title {
+      font-weight: 900;
+      color: #1e293b;
+      margin-bottom: 0.75rem;
+      font-size: 1.125rem;
+    }
+
+    .step-description {
+      font-size: 1rem;
+      color: #475569;
+      line-height: 1.625;
+      padding: 0 0.5rem;
+    }
+
+    /* ===================================================================
+       MOBILE TIMELINE (Vertical)
+       =================================================================== */
+    
+    .timeline-mobile {
+      display: block;
+      position: relative;
+    }
+
+    .timeline-mobile-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      position: relative;
+    }
+
+    /* Vertical progress line background */
+    .progress-line-bg-vertical {
+      position: absolute;
+      left: 1.5rem;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background-color: #e2e8f0;
+    }
+
+    /* Animated vertical progress line fill */
+    .progress-line-fill-vertical {
+      position: absolute;
+      left: 1.5rem;
+      top: 0;
+      width: 2px;
+      background-color: #84007B;
+      height: 0%;
+      transition: height 0.3s ease-out;
+      will-change: height;
+    }
+
+    .timeline-step-mobile {
+      display: flex;
+      align-items: start;
+      gap: 1.5rem;
+      position: relative;
+    }
+
+    .step-indicator-mobile {
+      flex-shrink: 0;
+      width: 3.5rem;
+      height: 3.5rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.5s ease-out;
+      background-color: white;
+      border: 4px solid #cbd5e1;
+      position: relative;
+    }
+
+    .step-indicator-mobile.completed {
+      background-color: #84007B;
+      border-color: #84007B;
+      animation: stepComplete 0.4s ease-out;
+    }
+
+    .step-number-mobile {
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: #94a3b8;
+    }
+
+    .step-indicator-mobile.completed .step-number-mobile {
+      display: none;
+    }
+
+    .check-icon-mobile {
+      display: none;
+      width: 1.75rem;
+      height: 1.75rem;
+      color: white;
+    }
+
+    .step-indicator-mobile.completed .check-icon-mobile {
+      display: block;
+    }
+
+    /* Done label mobile - REMOVED */
+
+    .step-content-mobile {
+      flex: 1;
+      padding-top: 0.5rem;
+    }
+
+    .step-title-mobile {
+      font-weight: 900;
+      color: #1e293b;
+      margin-bottom: 0.5rem;
+      font-size: 1.125rem;
+    }
+
+    .step-description-mobile {
+      font-size: 1rem;
+      color: #475569;
+      line-height: 1.625;
+    }
+
+    /* ===================================================================
+       CTA BUTTON
+       =================================================================== */
+    
+    .section-cta {
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #84007B;
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 0.5rem;
+      font-weight: 900;
+      font-size: 1rem;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .cta-button:hover {
+      background-color: #6B0066;
+    }
+
+    /* ===================================================================
+       RESPONSIVE DESIGN
+       =================================================================== */
+    
+    @media (min-width: 768px) {
+      .how-it-works-section {
+        padding: 6rem 1.5rem;
+      }
+
+      .section-header {
+        margin-bottom: 4rem;
+      }
+
+      .section-title {
+        font-size: 2.25rem;
+      }
+
+      .timeline-desktop {
+        display: block;
+      }
+
+      .timeline-mobile {
+        display: none;
+      }
+
+      .section-cta {
+        margin-top: 4rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .section-title {
+        font-size: 3rem;
+      }
+    }
+
+    /* ===================================================================
+       ACCESSIBILITY - REDUCED MOTION
+       =================================================================== */
+    
+    @media (prefers-reduced-motion: reduce) {
+      .step-indicator,
+      .step-indicator-mobile {
+        transition: none !important;
+        animation: none !important;
+      }
+
+      .step-indicator.completed,
+      .step-indicator-mobile.completed {
+        animation: none !important;
+      }
+
+      .done-label,
+      .done-label-mobile {
+        opacity: 1 !important;
+        animation: none !important;
+      }
+
+      .progress-line-fill,
+      .progress-line-fill-vertical {
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===================================================================
+     HOW IT WORKS SECTION
+     - Paste this entire section into WordPress Custom HTML or Elementor
+     =================================================================== -->
+
+<section id="how-it-works" class="how-it-works-section">
+  <!-- Dot grid background pattern -->
+  <div class="dot-grid-pattern"></div>
+
+  <div class="how-it-works-container">
+    
+    <!-- Section Header -->
+    <div class="section-header">
+      <h2 class="section-title">
+        How It Works
+      </h2>
+    </div>
+
+    <!-- Desktop horizontal timeline -->
+    <div class="timeline-desktop">
+      <div class="timeline-steps-container">
+        <!-- Progress line background -->
+        <div class="progress-line-bg"></div>
+        
+        <!-- Animated progress line fill -->
+        <div class="progress-line-fill" id="progressLineFill"></div>
+
+        <!-- Step 1 -->
+        <div class="timeline-step">
+          <div class="step-indicator-wrapper">
+            <div class="step-indicator" data-step="1">
+              <span class="step-number">1</span>
+              <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+
+          </div>
+          <h3 class="step-title">Consultation</h3>
+          <p class="step-description">A short call about your language, student levels, and class sizes.</p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="timeline-step">
+          <div class="step-indicator-wrapper">
+            <div class="step-indicator" data-step="2">
+              <span class="step-number">2</span>
+              <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+
+          </div>
+          <h3 class="step-title">Syllabus Fit Check</h3>
+          <p class="step-description">We compare GrammarWorkout's content to what you're already teaching, level by level.</p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="timeline-step">
+          <div class="step-indicator-wrapper">
+            <div class="step-indicator" data-step="3">
+              <span class="step-number">3</span>
+              <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+
+          </div>
+          <h3 class="step-title">Proposal</h3>
+          <p class="step-description">You get pricing built around your program size, not a flat rate.</p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="timeline-step">
+          <div class="step-indicator-wrapper">
+            <div class="step-indicator" data-step="4">
+              <span class="step-number">4</span>
+              <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+
+          </div>
+          <h3 class="step-title">Rollout & Support</h3>
+          <p class="step-description">Staff get a short walkthrough, and your program gets an ongoing contact once it's live.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mobile vertical timeline -->
+    <div class="timeline-mobile">
+      <!-- Vertical progress line background -->
+      <div class="progress-line-bg-vertical"></div>
+      
+      <!-- Animated vertical progress line fill -->
+      <div class="progress-line-fill-vertical" id="progressLineFillVertical"></div>
+
+      <div class="timeline-mobile-steps">
+        
+        <!-- Step 1 Mobile -->
+        <div class="timeline-step-mobile">
+          <div style="position: relative;">
+            <div class="step-indicator-mobile" data-step-mobile="1">
+              <span class="step-number-mobile">1</span>
+              <svg class="check-icon-mobile" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+
+          </div>
+          <div class="step-content-mobile">
+            <h3 class="step-title-mobile">Consultation</h3>
+            <p class="step-description-mobile">A short call about your language, student levels, and class sizes.</p>
+          </div>
+        </div>
+
+        <!-- Step 2 Mobile -->
+        <div class="timeline-step-mobile">
+          <div style="position: relative;">
+            <div class="step-indicator-mobile" data-step-mobile="2">
+              <span class="step-number-mobile">2</span>
+              <svg class="check-icon-mobile" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+
+          </div>
+          <div class="step-content-mobile">
+            <h3 class="step-title-mobile">Syllabus Fit Check</h3>
+            <p class="step-description-mobile">We compare GrammarWorkout's content to what you're already teaching, level by level.</p>
+          </div>
+        </div>
+
+        <!-- Step 3 Mobile -->
+        <div class="timeline-step-mobile">
+          <div style="position: relative;">
+            <div class="step-indicator-mobile" data-step-mobile="3">
+              <span class="step-number-mobile">3</span>
+              <svg class="check-icon-mobile" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+
+          </div>
+          <div class="step-content-mobile">
+            <h3 class="step-title-mobile">Proposal</h3>
+            <p class="step-description-mobile">You get pricing built around your program size, not a flat rate.</p>
+          </div>
+        </div>
+
+        <!-- Step 4 Mobile -->
+        <div class="timeline-step-mobile">
+          <div style="position: relative;">
+            <div class="step-indicator-mobile" data-step-mobile="4">
+              <span class="step-number-mobile">4</span>
+              <svg class="check-icon-mobile" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+
+          </div>
+          <div class="step-content-mobile">
+            <h3 class="step-title-mobile">Rollout & Support</h3>
+            <p class="step-description-mobile">Staff get a short walkthrough, and your program gets an ongoing contact once it's live.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CTA Button -->
+    <div class="section-cta">
+      <a href="#consultation" class="cta-button">
+        Request a Quote
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===================================================================
+     VANILLA JAVASCRIPT - Scroll-triggered timeline animation
+     =================================================================== -->
+
+<script>
+(function() {
+  'use strict';
+
+  // Check for reduced motion preference
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // State
+  let completedSteps = [];
+  let scrollProgress = 0;
+
+  // Initialize on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+  function init() {
+    // Always show all steps as complete immediately
+    completeAllSteps();
+    
+    if (prefersReducedMotion) {
+      return;
+    }
+
+    // Still setup scroll animation for progress line smoothness
+    setupScrollAnimation();
+  }
+
+  /**
+   * Complete all steps immediately
+   */
+  function completeAllSteps() {
+    completedSteps = [1, 2, 3, 4];
+    scrollProgress = 100;
+    updateUI();
+    updateProgressLines();
+  }
+
+  /**
+   * Setup scroll-triggered animation
+   */
+  function setupScrollAnimation() {
+    const section = document.getElementById('how-it-works');
+    if (!section) return;
+
+    let ticking = false;
+
+    function handleScroll() {
+      if (ticking) return;
+
+      ticking = true;
+      requestAnimationFrame(() => {
+        updateScrollProgress();
+        ticking = false;
+      });
+    }
+
+    function updateScrollProgress() {
+      const rect = section.getBoundingClientRect();
+      const sectionTop = rect.top;
+      const sectionHeight = rect.height;
+      const windowHeight = window.innerHeight;
+
+      // Calculate when section enters viewport (when top is at 80% of window)
+      const triggerPoint = windowHeight * 0.8;
+
+      if (sectionTop < triggerPoint && sectionTop > -sectionHeight) {
+        // Calculate progress (0 to 1)
+        const progress = Math.min(
+          Math.max((triggerPoint - sectionTop) / (sectionHeight * 0.6), 0),
+          1
+        );
+
+        scrollProgress = progress * 100;
+
+        // Mark steps as complete based on progress
+        const newCompletedSteps = [];
+        if (progress >= 0.25) newCompletedSteps.push(1);
+        if (progress >= 0.5) newCompletedSteps.push(2);
+        if (progress >= 0.75) newCompletedSteps.push(3);
+        if (progress >= 1) newCompletedSteps.push(4);
+
+        // Only update if changed
+        if (JSON.stringify(newCompletedSteps) !== JSON.stringify(completedSteps)) {
+          completedSteps = newCompletedSteps;
+          updateUI();
+        }
+
+        // Update progress lines
+        updateProgressLines();
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Initial check
+  }
+
+  /**
+   * Update UI based on completed steps
+   */
+  function updateUI() {
+    // Desktop indicators
+    completedSteps.forEach(stepNum => {
+      const indicator = document.querySelector(`.step-indicator[data-step="${stepNum}"]`);
+      if (indicator) indicator.classList.add('completed');
+    });
+
+    // Mobile indicators
+    completedSteps.forEach(stepNum => {
+      const indicatorMobile = document.querySelector(`.step-indicator-mobile[data-step-mobile="${stepNum}"]`);
+      if (indicatorMobile) indicatorMobile.classList.add('completed');
+    });
+  }
+
+  /**
+   * Update progress line fills
+   */
+  function updateProgressLines() {
+    const progressLineFill = document.getElementById('progressLineFill');
+    const progressLineFillVertical = document.getElementById('progressLineFillVertical');
+
+    if (progressLineFill) {
+      progressLineFill.style.width = `${scrollProgress * 0.84}%`;
+    }
+
+    if (progressLineFillVertical) {
+      progressLineFillVertical.style.height = `${scrollProgress}%`;
+    }
+  }
+
+})();
+</script>
+
+</body>
+</html>
