@@ -10,6 +10,8 @@ import {
   Volume2,
   DollarSign
 } from 'lucide-react';
+import PricingSection from './components/ui/pricing';
+import WhatsIncluded from './components/WhatsIncluded';
 
 interface FAQItem {
   id: string;
@@ -125,43 +127,43 @@ export default function App() {
       </AnimatePresence>
 
       {/* SECTION 1 — HERO */}
-      <section className="relative overflow-hidden min-h-[500px] md:min-h-[600px] flex items-start justify-center bg-white text-brand-navy pt-12 sm:pt-16 md:pt-20 pb-20 px-6">
+      <section className="hero-enhanced relative overflow-hidden min-h-[700px] md:min-h-[820px] flex items-start justify-center bg-white text-brand-navy pt-20 sm:pt-28 md:pt-32 pb-40 px-6">
         
         {/* Background Image: Happy diverse group of learners */}
-        <div className="absolute inset-0 z-0">
+        <div className="hero-illustration-container absolute inset-0 z-0">
           <img 
             className="w-full h-full object-cover object-center"
             src="/images/Gemini_Generated_Image_eurrjaeurrjaeurr.png"
             alt="Diverse group of friendly, smiling language learners representing every kind of student"
           />
-          {/* Light overlay to ensure text readability */}
-          <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/50 to-white/70" />
+          {/* Light overlay to ensure text readability - controlled by CSS */}
+          <div className="hero-overlay-gradient"></div>
           {/* Bottom fade element for smooth transition */}
-          <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white via-white/90 to-transparent" />
+          <div className="hero-illustration-fade-bottom"></div>
         </div>
 
         {/* Hero content - Centered on top of the image */}
-        <div className="relative z-10 max-w-3xl mx-auto text-center space-y-3 -mt-8">
+        <div className="hero-parallax-layer relative z-10 max-w-3xl mx-auto text-center space-y-6 -mt-20">
           
-          <div className="space-y-2">
-            <h1 className="text-2xl sm:text-4xl md:text-5xl font-black leading-tight tracking-tight max-w-3xl mx-auto text-slate-800 drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)]">
+          <div className="space-y-4">
+            <h1 className="hero-headline-text text-3xl sm:text-5xl md:text-6xl font-black leading-tight tracking-tight max-w-3xl mx-auto text-slate-800 drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)]">
               Turn Grammar Practice Into Real <span className="text-[#82007C]">Classroom Results</span>
             </h1>
-            <p className="text-sm sm:text-base md:text-lg text-slate-700 max-w-2xl mx-auto leading-relaxed font-medium drop-shadow-[0_1px_4px_rgba(0,0,0,0.25)]">
-              <span className="font-black text-[#82007C]">CEFR</span> (Common European Framework of Reference for Languages) aligned French and Spanish grammar training, built for schools and language programs
+            <p className="hero-subheadline-text text-sm sm:text-base md:text-lg text-slate-700 max-w-2xl mx-auto leading-relaxed font-medium drop-shadow-[0_1px_4px_rgba(0,0,0,0.25)]">
+              <span className="hero-cefr-badge font-black text-[#82007C]">CEFR</span> (Common European Framework of Reference for Languages) aligned French and Spanish grammar training, built for schools and language programs
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-3 items-center justify-center pt-2">
+          <div className="hero-cta-buttons flex flex-col sm:flex-row gap-4 items-center justify-center pt-2">
             <a 
               href="#consultation"
-              className="w-full sm:w-auto bg-[#82007C] text-white px-7 py-3 rounded-xl text-sm font-black shadow-lg hover:scale-105 hover:bg-[#6B0066] transition-all cursor-pointer flex items-center justify-center gap-2"
+              className="hero-btn-primary w-full sm:w-auto bg-[#82007C] text-white px-7 py-3 rounded-xl text-sm font-black shadow-lg hover:scale-105 hover:bg-[#6B0066] transition-all cursor-pointer flex items-center justify-center gap-2"
             >
               Book a Consultation
             </a>
             <a 
               href="#consultation"
-              className="w-full sm:w-auto border-2 border-[#82007C]/30 hover:border-[#82007C]/50 text-[#82007C] bg-white/80 hover:bg-white px-7 py-3 rounded-xl text-sm font-black transition-all cursor-pointer backdrop-blur-sm flex items-center justify-center gap-2"
+              className="hero-btn-secondary w-full sm:w-auto border-2 border-[#82007C]/30 hover:border-[#82007C]/50 text-[#82007C] bg-white/80 hover:bg-white px-7 py-3 rounded-xl text-sm font-black transition-all cursor-pointer backdrop-blur-sm flex items-center justify-center gap-2"
             >
               Request a Quote
             </a>
@@ -243,98 +245,14 @@ export default function App() {
       </section>
 
       {/* SECTION 3 — WHAT'S INCLUDED */}
-      <section id="whats-included" className="py-12 md:py-16 px-6 bg-slate-50">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-6">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-slate-800 mb-2">
-              What's Included
-            </h2>
-          </div>
+      <WhatsIncluded />
 
-          {/* Perfect rectangle masonry grid - no empty space */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 auto-rows-max">
-            
-            {/* Card 1 - French & Spanish - Wide (2 cols, 1 row) */}
-            <div className="col-span-2 p-4 bg-white rounded-lg border border-slate-200 hover:shadow-md transition-shadow">
-              <div className="flex items-start gap-3">
-                <div className="w-10 h-10 bg-[#DCB8DA] rounded-lg flex items-center justify-center flex-shrink-0">
-                  <BookOpen className="w-5 h-5 text-[#82007C]" />
-                </div>
-                <div className="flex-1">
-                  <div className="flex items-start justify-between mb-1">
-                    <h3 className="text-base font-black text-slate-800">French & Spanish Grammar Tracks</h3>
-                    <span className="text-xs font-mono font-black text-[#82007C] bg-[#F5EBF4] px-2 py-0.5 rounded">A1-B2</span>
-                  </div>
-                  <p className="text-sm text-slate-600">Two complete programs, A1 through B2, so every student has a starting point.</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Card 2 - Syllabus Fit Check - Tall (1 col, 2 rows) */}
-            <div className="row-span-2 p-4 bg-white rounded-lg border border-slate-200 hover:shadow-md transition-shadow flex flex-col">
-              <div className="flex items-center gap-2 mb-2">
-                <div className="w-10 h-10 bg-[#DCB8DA] rounded-lg flex items-center justify-center">
-                  <CheckCircle className="w-5 h-5 text-[#82007C]" />
-                </div>
-                <span className="text-xs font-mono font-black text-[#82007C] bg-[#F5EBF4] px-2 py-0.5 rounded">A1-B2</span>
-              </div>
-              <h3 className="text-base font-black text-slate-800 mb-2">Syllabus Fit Check</h3>
-              <p className="text-sm text-slate-600">Before rollout, we line up GrammarWorkout's levels against what your program already teaches.</p>
-            </div>
-
-            {/* Card 3 - Teacher Dashboards (1 col, 1 row) */}
-            <div className="p-4 bg-white rounded-lg border border-slate-200 hover:shadow-md transition-shadow">
-              <div className="flex items-center gap-2 mb-2">
-                <div className="w-10 h-10 bg-[#DCB8DA] rounded-lg flex items-center justify-center">
-                  <BarChart3 className="w-5 h-5 text-[#82007C]" />
-                </div>
-                <span className="text-xs font-mono font-black text-[#82007C] bg-[#F5EBF4] px-2 py-0.5 rounded">A1-B2</span>
-              </div>
-              <h3 className="text-base font-black text-slate-800 mb-1">Teacher & Admin Dashboards</h3>
-              <p className="text-sm text-slate-600">Spot class-wide trends and individual gaps without building a report by hand.</p>
-            </div>
-
-            {/* Card 4 - Native Audio (1 col, 1 row) */}
-            <div className="p-4 bg-white rounded-lg border border-slate-200 hover:shadow-md transition-shadow">
-              <div className="flex items-center gap-2 mb-2">
-                <div className="w-10 h-10 bg-[#DCB8DA] rounded-lg flex items-center justify-center">
-                  <Volume2 className="w-5 h-5 text-[#82007C]" />
-                </div>
-                <span className="text-xs font-mono font-black text-[#82007C] bg-[#F5EBF4] px-2 py-0.5 rounded">A1-B2</span>
-              </div>
-              <h3 className="text-base font-black text-slate-800 mb-1">Native-Speaker Audio</h3>
-              <p className="text-sm text-slate-600">Every exercise is voiced by a native speaker, so pronunciation trains alongside grammar.</p>
-            </div>
-
-            {/* Card 5 - Institutional Pricing - Wide (2 cols, 1 row) */}
-            <div className="col-span-2 p-4 bg-white rounded-lg border border-slate-200 hover:shadow-md transition-shadow">
-              <div className="flex items-start gap-3">
-                <div className="w-10 h-10 bg-[#DCB8DA] rounded-lg flex items-center justify-center flex-shrink-0">
-                  <DollarSign className="w-5 h-5 text-[#82007C]" />
-                </div>
-                <div className="flex-1">
-                  <div className="flex items-start justify-between mb-1">
-                    <h3 className="text-base font-black text-slate-800">Institutional Pricing</h3>
-                    <span className="text-xs font-mono font-black text-[#82007C] bg-[#F5EBF4] px-2 py-0.5 rounded">A1-B2</span>
-                  </div>
-                  <p className="text-sm text-slate-600">Costs scale with class size, not a per-seat rate built for individual learners.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="text-center mt-6">
-            <a 
-              href="#consultation"
-              className="inline-flex items-center justify-center bg-[#82007C] text-white px-8 py-4 rounded-lg font-black hover:bg-[#6B0066] transition-colors"
-            >
-              See Pricing for Your Program
-            </a>
-          </div>
-        </div>
+      {/* SECTION 4 — PRICING */}
+      <section id="pricing" className="bg-slate-50">
+        <PricingSection />
       </section>
 
-      {/* SECTION 4 — HOW IT WORKS */}
+      {/* SECTION 5 — HOW IT WORKS */}
       <section id="how-it-works" className="py-12 md:py-16 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-8">
@@ -431,7 +349,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* SECTION 5 — FAQ */}
+      {/* SECTION 6 — FAQ */}
       <section id="faq" className="py-12 md:py-16 px-6 bg-slate-50">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-8">
@@ -482,7 +400,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* SECTION 6 — FINAL CTA */}
+      {/* SECTION 7 — FINAL CTA */}
       <section id="consultation" className="py-12 md:py-16 px-6 bg-[#82007C] text-white">
         <div className="max-w-4xl mx-auto text-center space-y-2">
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold">
