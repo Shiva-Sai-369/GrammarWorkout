@@ -74,14 +74,14 @@ const FeatureRow = ({ feature, index }: FeatureRowProps) => {
     >
       {/* Icon Side */}
       <div className="flex-shrink-0">
-        <div className="w-24 h-24 bg-[#82007C] rounded-2xl flex items-center justify-center text-white shadow-lg">
+        <div className="w-24 h-24 bg-[#84007B] rounded-2xl flex items-center justify-center text-white shadow-lg">
           {feature.icon}
         </div>
       </div>
 
       {/* Text Side */}
       <div className={`flex-1 ${isEven ? 'md:text-left' : 'md:text-right'} text-center`}>
-        <h3 className="text-2xl md:text-3xl font-black text-[#82007C] mb-3">
+        <h3 className="text-2xl md:text-3xl font-black text-[#84007B] mb-3">
           {feature.title}
         </h3>
         <p className="text-base md:text-lg text-slate-600 leading-relaxed font-medium">
@@ -114,7 +114,7 @@ export default function WhatsIncluded() {
         <div className="text-center mt-16 md:mt-20">
           <a
             href="#pricing"
-            className="inline-flex items-center justify-center bg-[#82007C] text-white px-8 py-4 rounded-lg text-lg font-black hover:bg-[#6B0066] transition-colors shadow-lg hover:shadow-xl hover:scale-105 transition-all"
+            className="inline-flex items-center justify-center bg-[#84007B] text-white px-8 py-4 rounded-lg text-lg font-black hover:bg-[#6B0066] transition-colors shadow-lg hover:shadow-xl hover:scale-105 transition-all"
           >
             See Pricing for Your Program
           </a>

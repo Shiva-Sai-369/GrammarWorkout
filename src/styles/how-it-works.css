@@ -1,0 +1,101 @@
+/* ===================================================================
+   HOW IT WORKS SECTION - Training Log Style
+   - Dot grid background pattern
+   - Step completion animations
+   - Done label fade-in
+   - Respects prefers-reduced-motion
+   =================================================================== */
+
+/* Dot grid background pattern */
+.dot-grid-pattern {
+  background-image: radial-gradient(circle, rgba(130, 0, 124, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
+}
+
+/* Step completion animation */
+@keyframes stepComplete {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.step-completed {
+  animation: stepComplete 0.4s ease-out;
+}
+
+/* Done label fade-in animation */
+@keyframes doneLabel {
+  0% {
+    opacity: 0;
+    transform: translateY(-50%) scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+  }
+}
+
+/* Desktop done label (right side) */
+.done-label {
+  opacity: 0;
+  animation: doneLabel 0.3s ease-out 0.2s forwards;
+}
+
+/* Mobile done label adjustments */
+@media (max-width: 768px) {
+  .done-label {
+    animation: doneLabel 0.3s ease-out 0.2s forwards;
+  }
+  
+  @keyframes doneLabel {
+    0% {
+      opacity: 0;
+      transform: translate(-50%, 0) scale(0.8);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(-50%, 0) scale(1);
+    }
+  }
+}
+
+/* Prefers reduced motion - disable all animations */
+@media (prefers-reduced-motion: reduce) {
+  .step-completed {
+    animation: none !important;
+  }
+
+  .done-label {
+    opacity: 1 !important;
+    animation: none !important;
+    transform: translateY(-50%) !important;
+  }
+
+  @media (max-width: 768px) {
+    .done-label {
+      transform: translate(-50%, 0) !important;
+    }
+  }
+
+  /* Disable transition on progress lines */
+  .how-it-works-section div[style*="transition"] {
+    transition: none !important;
+  }
+}
+
+/* Smooth transitions for status indicators */
+.how-it-works-section [class*="rounded-full"] {
+  will-change: transform, background-color, border-color;
+}
+
+/* Progress line smooth transition */
+.how-it-works-section > div > div > div[style*="bg-[#84007B]"] {
+  will-change: width, height;
+}

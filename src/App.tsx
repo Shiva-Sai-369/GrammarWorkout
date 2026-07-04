@@ -1,17 +1,13 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
-  BookOpen, 
   ChevronDown, 
   Menu, 
-  X,
-  CheckCircle,
-  BarChart3,
-  Volume2,
-  DollarSign
+  X
 } from 'lucide-react';
 import PricingSection from './components/ui/pricing';
 import WhatsIncluded from './components/WhatsIncluded';
+import HowItWorks from './components/HowItWorks';
 
 interface FAQItem {
   id: string;
@@ -78,15 +74,15 @@ export default function App() {
 
           {/* Desktop Nav Links */}
           <div className="hidden md:flex items-center gap-4 text-sm font-black">
-            <a className="text-slate-700 hover:text-[#82007C] transition-colors" href="#why-schools">Why Schools Choose Us</a>
-            <a className="text-slate-700 hover:text-[#82007C] transition-colors" href="#whats-included">What's Included</a>
-            <a className="text-slate-700 hover:text-[#82007C] transition-colors" href="#how-it-works">How It Works</a>
-            <a className="text-slate-700 hover:text-[#82007C] transition-colors" href="#faq">FAQ</a>
+            <a className="text-slate-700 hover:text-[#84007B] transition-colors" href="#why-schools">Why Schools Choose Us</a>
+            <a className="text-slate-700 hover:text-[#84007B] transition-colors" href="#whats-included">What's Included</a>
+            <a className="text-slate-700 hover:text-[#84007B] transition-colors" href="#how-it-works">How It Works</a>
+            <a className="text-slate-700 hover:text-[#84007B] transition-colors" href="#faq">FAQ</a>
             <a 
               href="#consultation"
-              className="bg-[#82007C] text-white px-6 py-2.5 rounded-lg font-black hover:bg-[#6B0066] transition-colors"
+              className="bg-[#84007B] text-white px-6 py-2.5 rounded-lg font-black hover:bg-[#6B0066] transition-colors"
             >
-              Book a Consultation
+              Request a Quote
             </a>
           </div>
 
@@ -117,9 +113,9 @@ export default function App() {
               <a 
                 href="#consultation"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="w-full text-center py-3 bg-[#82007C] text-white rounded-lg font-black"
+                className="w-full text-center py-3 bg-[#84007B] text-white rounded-lg font-black"
               >
-                Book a Consultation
+                Request a Quote
               </a>
             </div>
           </motion.div>
@@ -147,23 +143,17 @@ export default function App() {
           
           <div className="space-y-4">
             <h1 className="hero-headline-text text-3xl sm:text-5xl md:text-6xl font-black leading-tight tracking-tight max-w-3xl mx-auto text-slate-800 drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)]">
-              Turn Grammar Practice Into Real <span className="text-[#82007C]">Classroom Results</span>
+              Turn Grammar Practice Into Real <span className="text-[#84007B]">Classroom Results</span>
             </h1>
             <p className="hero-subheadline-text text-sm sm:text-base md:text-lg text-slate-700 max-w-2xl mx-auto leading-relaxed font-medium drop-shadow-[0_1px_4px_rgba(0,0,0,0.25)]">
-              <span className="hero-cefr-badge font-black text-[#82007C]">CEFR</span> (Common European Framework of Reference for Languages) aligned French and Spanish grammar training, built for schools and language programs
+              <span className="hero-cefr-badge font-black text-[#84007B]">CEFR</span>-aligned French and Spanish grammar training, built for schools and language programs
             </p>
           </div>
 
           <div className="hero-cta-buttons flex flex-col sm:flex-row gap-4 items-center justify-center pt-2">
             <a 
               href="#consultation"
-              className="hero-btn-primary w-full sm:w-auto bg-[#82007C] text-white px-7 py-3 rounded-xl text-sm font-black shadow-lg hover:scale-105 hover:bg-[#6B0066] transition-all cursor-pointer flex items-center justify-center gap-2"
-            >
-              Book a Consultation
-            </a>
-            <a 
-              href="#consultation"
-              className="hero-btn-secondary w-full sm:w-auto border-2 border-[#82007C]/30 hover:border-[#82007C]/50 text-[#82007C] bg-white/80 hover:bg-white px-7 py-3 rounded-xl text-sm font-black transition-all cursor-pointer backdrop-blur-sm flex items-center justify-center gap-2"
+              className="hero-btn-primary w-full sm:w-auto bg-[#84007B] text-white px-7 py-3 rounded-xl text-sm font-black shadow-lg hover:scale-105 hover:bg-[#6B0066] transition-all cursor-pointer flex items-center justify-center gap-2"
             >
               Request a Quote
             </a>
@@ -211,23 +201,23 @@ export default function App() {
 
             {/* Right lane: GrammarWorkout */}
             <div className="space-y-3">
-              <div className="p-4 bg-[#F5EBF4] rounded-lg border-2 border-[#82007C]">
-                <h3 className="font-black text-[#82007C] mb-2">Grammar comes first.</h3>
+              <div className="p-4 bg-[#F5EBF4] rounded-lg border-2 border-[#84007B]">
+                <h3 className="font-black text-[#84007B] mb-2">Grammar comes first.</h3>
                 <p className="text-sm text-slate-700 font-medium">Lessons are built around understanding sentence structure, not around daily streak reminders.</p>
               </div>
               
-              <div className="p-4 bg-[#F5EBF4] rounded-lg border-2 border-[#82007C]">
-                <h3 className="font-black text-[#82007C] mb-2">CEFR alignment your reports can use.</h3>
+              <div className="p-4 bg-[#F5EBF4] rounded-lg border-2 border-[#84007B]">
+                <h3 className="font-black text-[#84007B] mb-2">CEFR alignment your reports can use.</h3>
                 <p className="text-sm text-slate-700 font-medium">A1–B2 levels map to a standard your administrators already recognize.</p>
               </div>
               
-              <div className="p-4 bg-[#F5EBF4] rounded-lg border-2 border-[#82007C]">
-                <h3 className="font-black text-[#82007C] mb-2">Built for more than one user.</h3>
+              <div className="p-4 bg-[#F5EBF4] rounded-lg border-2 border-[#84007B]">
+                <h3 className="font-black text-[#84007B] mb-2">Built for more than one user.</h3>
                 <p className="text-sm text-slate-700 font-medium">Teachers and administrators see the same progress data students do — nothing gets lost between class and report card.</p>
               </div>
               
-              <div className="p-4 bg-[#F5EBF4] rounded-lg border-2 border-[#82007C]">
-                <h3 className="font-black text-[#82007C] mb-2">Grounded in how grammar is actually learned.</h3>
+              <div className="p-4 bg-[#F5EBF4] rounded-lg border-2 border-[#84007B]">
+                <h3 className="font-black text-[#84007B] mb-2">Grounded in how grammar is actually learned.</h3>
                 <p className="text-sm text-slate-700 font-medium">The lesson order follows language-acquisition research, not what tests well for app engagement.</p>
               </div>
             </div>
@@ -236,7 +226,7 @@ export default function App() {
           <div className="text-center mt-6">
             <a 
               href="#consultation"
-              className="inline-flex items-center justify-center bg-[#82007C] text-white px-8 py-4 rounded-lg font-black hover:bg-[#6B0066] transition-colors"
+              className="inline-flex items-center justify-center bg-[#84007B] text-white px-8 py-4 rounded-lg font-black hover:bg-[#6B0066] transition-colors"
             >
               Talk to Our Team
             </a>
@@ -253,101 +243,7 @@ export default function App() {
       </section>
 
       {/* SECTION 5 — HOW IT WORKS */}
-      <section id="how-it-works" className="py-12 md:py-16 px-6 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-8">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-slate-800 mb-4">
-              How It Works
-            </h2>
-          </div>
-
-          {/* Horizontal numbered timeline */}
-          <div className="relative">
-            {/* Desktop timeline */}
-            <div className="hidden md:flex items-start justify-between gap-4 mb-8">
-              <div className="flex-1 text-center">
-                <div className="w-16 h-16 bg-[#82007C] text-white rounded-full flex items-center justify-center mx-auto mb-4 font-black text-2xl">1</div>
-                <h3 className="font-black text-slate-800 mb-2">Consultation</h3>
-                <p className="text-sm text-slate-600">A short call about your language, student levels, and class sizes.</p>
-              </div>
-              
-              <div className="flex items-center pt-8">
-                <div className="w-12 h-0.5 bg-purple-300"></div>
-              </div>
-              
-              <div className="flex-1 text-center">
-                <div className="w-16 h-16 bg-[#82007C] text-white rounded-full flex items-center justify-center mx-auto mb-4 font-black text-2xl">2</div>
-                <h3 className="font-black text-slate-800 mb-2">Syllabus Fit Check</h3>
-                <p className="text-sm text-slate-600">We compare GrammarWorkout's content to what you're already teaching, level by level.</p>
-              </div>
-              
-              <div className="flex items-center pt-8">
-                <div className="w-12 h-0.5 bg-purple-300"></div>
-              </div>
-              
-              <div className="flex-1 text-center">
-                <div className="w-16 h-16 bg-[#82007C] text-white rounded-full flex items-center justify-center mx-auto mb-4 font-black text-2xl">3</div>
-                <h3 className="font-black text-slate-800 mb-2">Proposal</h3>
-                <p className="text-sm text-slate-600">You get pricing built around your program size, not a flat rate.</p>
-              </div>
-              
-              <div className="flex items-center pt-8">
-                <div className="w-12 h-0.5 bg-purple-300"></div>
-              </div>
-              
-              <div className="flex-1 text-center">
-                <div className="w-16 h-16 bg-[#82007C] text-white rounded-full flex items-center justify-center mx-auto mb-4 font-black text-2xl">4</div>
-                <h3 className="font-black text-slate-800 mb-2">Rollout & Support</h3>
-                <p className="text-sm text-slate-600">Staff get a short walkthrough, and your program gets an ongoing contact once it's live.</p>
-              </div>
-            </div>
-
-            {/* Mobile timeline */}
-            <div className="md:hidden space-y-2">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-[#82007C] text-white rounded-full flex items-center justify-center flex-shrink-0 font-black text-lg">1</div>
-                <div>
-                  <h3 className="font-black text-slate-800 mb-2">Consultation</h3>
-                  <p className="text-sm text-slate-600">A short call about your language, student levels, and class sizes.</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-[#82007C] text-white rounded-full flex items-center justify-center flex-shrink-0 font-black text-lg">2</div>
-                <div>
-                  <h3 className="font-black text-slate-800 mb-2">Syllabus Fit Check</h3>
-                  <p className="text-sm text-slate-600">We compare GrammarWorkout's content to what you're already teaching, level by level.</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-[#82007C] text-white rounded-full flex items-center justify-center flex-shrink-0 font-black text-lg">3</div>
-                <div>
-                  <h3 className="font-black text-slate-800 mb-2">Proposal</h3>
-                  <p className="text-sm text-slate-600">You get pricing built around your program size, not a flat rate.</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-[#82007C] text-white rounded-full flex items-center justify-center flex-shrink-0 font-black text-lg">4</div>
-                <div>
-                  <h3 className="font-black text-slate-800 mb-2">Rollout & Support</h3>
-                  <p className="text-sm text-slate-600">Staff get a short walkthrough, and your program gets an ongoing contact once it's live.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="text-center mt-6">
-            <a 
-              href="#consultation"
-              className="inline-flex items-center justify-center bg-[#82007C] text-white px-8 py-4 rounded-lg font-black hover:bg-[#6B0066] transition-colors"
-            >
-              Start With a Consultation
-            </a>
-          </div>
-        </div>
-      </section>
+      <HowItWorks />
 
       {/* SECTION 6 — FAQ */}
       <section id="faq" className="py-12 md:py-16 px-6 bg-slate-50">
@@ -401,8 +297,8 @@ export default function App() {
       </section>
 
       {/* SECTION 7 — FINAL CTA */}
-      <section id="consultation" className="py-12 md:py-16 px-6 bg-[#82007C] text-white">
-        <div className="max-w-4xl mx-auto text-center space-y-2">
+      <section id="consultation" className="py-12 md:py-16 px-6 bg-[#84007B] text-white">
+        <div className="max-w-4xl mx-auto text-center space-y-4">
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold">
             Ready to See Grammar Practice Actually Pay Off in the Classroom?
           </h2>
@@ -413,13 +309,7 @@ export default function App() {
           <div className="flex flex-col sm:flex-row gap-4 items-center justify-center pt-4">
             <a 
               href="#consultation"
-              className="inline-flex items-center justify-center bg-white text-[#82007C] px-8 py-4 rounded-lg font-black hover:bg-[#F5EBF4] transition-colors"
-            >
-              Book a Consultation
-            </a>
-            <a 
-              href="#consultation"
-              className="inline-flex items-center justify-center border-2 border-white text-white px-8 py-4 rounded-lg font-black hover:bg-white/10 transition-colors"
+              className="inline-flex items-center justify-center bg-white text-[#84007B] px-8 py-4 rounded-lg font-black hover:bg-[#F5EBF4] transition-colors"
             >
               Request a Quote
             </a>

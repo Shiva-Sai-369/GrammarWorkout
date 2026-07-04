@@ -118,29 +118,29 @@ export default function PricingSection() {
             <Card
               className={`relative border-2 h-full flex flex-col ${
                 plan.popular
-                  ? "ring-2 ring-[#82007C] bg-[#F5EBF4] border-[#82007C]"
+                  ? "ring-2 ring-[#84007B] bg-[#F5EBF4] border-[#84007B]"
                   : "bg-white border-neutral-200"
               }`}
             >
               <CardHeader className="text-left pb-4">
                 <div className="flex justify-between items-start mb-2">
-                  <h3 className="text-3xl font-black text-[#82007C]">
+                  <h3 className="text-3xl font-black text-[#84007B]">
                     {plan.name}
                   </h3>
                   {plan.popular && (
-                    <span className="bg-[#82007C] text-white px-3 py-1 rounded-full text-xs font-black">
+                    <span className="bg-[#84007B] text-white px-3 py-1 rounded-full text-xs font-black">
                       Popular
                     </span>
                   )}
                 </div>
                 
-                <p className="text-sm text-[#82007C] mb-3 font-black">
+                <p className="text-sm text-[#84007B] mb-3 font-black">
                   (Introductory Price)
                 </p>
                 
                 {plan.savePercent && (
                   <div className="mb-4">
-                    <span className="bg-[#DCB8DA] text-[#82007C] px-3 py-1.5 rounded-md text-sm font-black">
+                    <span className="bg-[#DCB8DA] text-[#84007B] px-3 py-1.5 rounded-md text-sm font-black">
                       Save {plan.savePercent}!
                     </span>
                   </div>
@@ -164,8 +164,8 @@ export default function PricingSection() {
                 <button
                   className={`w-full mb-6 p-4 text-lg font-black rounded-lg transition-all ${
                     plan.popular
-                      ? "bg-gradient-to-b from-[#82007C] to-[#6B0066] text-white hover:shadow-lg hover:shadow-[#82007C]/50 hover:scale-105"
-                      : "bg-[#DCB8DA] text-[#82007C] hover:bg-[#82007C] hover:text-white hover:scale-105"
+                      ? "bg-gradient-to-b from-[#84007B] to-[#6B0066] text-white hover:shadow-lg hover:shadow-[#84007B]/50 hover:scale-105"
+                      : "bg-[#DCB8DA] text-[#84007B] hover:bg-[#84007B] hover:text-white hover:scale-105"
                   }`}
                 >
                   {plan.buttonText}
@@ -175,7 +175,7 @@ export default function PricingSection() {
                   <ul className="space-y-3">
                     {plan.features.map((feature, featureIndex) => (
                       <li key={featureIndex} className="flex items-start gap-3">
-                        <span className="h-6 w-6 bg-[#DCB8DA] rounded-full grid place-content-center mt-0.5 flex-shrink-0 text-[#82007C]">
+                        <span className="h-6 w-6 bg-[#DCB8DA] rounded-full grid place-content-center mt-0.5 flex-shrink-0 text-[#84007B]">
                           {feature.icon}
                         </span>
                         <span className="text-sm text-gray-700 font-medium">
